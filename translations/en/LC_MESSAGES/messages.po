@@ -1,0 +1,114 @@
+# English translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-04-12 18:28+0500\n"
+"PO-Revision-Date: 2025-04-12 18:28+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: database/service.py:52 keyboards/reply_keywords.py:23
+#: keyboards/reply_keywords.py:35 keyboards/reply_keywords.py:47
+#: keyboards/reply_keywords.py:78 keyboards/reply_keywords.py:103
+msgid "⬅️ Back"
+msgstr "⬅️ Back"
+
+#: handlers/main_handler.py:39
+msgid "Botimizga xush kelibsiz !!!"
+msgstr "Welcome to our bot!"
+
+#: handlers/main_handler.py:56
+msgid "Enter your full name"
+msgstr "Please enter your full name"
+
+#: handlers/main_handler.py:64
+msgid "Enter phone number"
+msgstr "Please enter your phone number"
+
+#: handlers/main_handler.py:76
+msgid "You successfully, registered"
+msgstr "You have successfully registered"
+
+#: handlers/main_handler.py:84
+msgid "Bizning operatorlarimiz bilan bog'laning: +998 94-924-29-45"
+msgstr "Contact our operators: +998 94-924-29-45"
+
+#: handlers/main_handler.py:93
+msgid "Choose nessesery language"
+msgstr "Choose the necessary language"
+
+#: handlers/main_handler.py:109
+msgid "Language changed successfully"
+msgstr "Language changed successfully"
+
+#: handlers/main_handler.py:119
+msgid "Choose one of the product"
+msgstr "Choose a product"
+
+#: handlers/main_handler.py:128
+msgid "How many do you need"
+msgstr "How many do you need?"
+
+#: handlers/main_handler.py:136
+msgid "In what time it need to delivered"
+msgstr "When should it be delivered?"
+
+#: handlers/main_handler.py:144
+msgid "Input you location"
+msgstr "Please share your location"
+
+#: handlers/main_handler.py:152
+#, python-brace-format
+msgid "Bu mazilni tasdiqlaysizmi **{location_}**"
+msgstr "Do you confirm this address **{location_}**?"
+
+#: handlers/main_handler.py:168
+msgid "Product added successfully, just wait about 2 days"
+msgstr "Product added successfully. Please wait around 2 days"
+
+#: handlers/main_handler.py:172
+msgid "Enter by hand !!!"
+msgstr "Enter manually!"
+
+#: handlers/main_handler.py:180
+msgid "Product added successfully, just wait"
+msgstr "Product added successfully. Please wait"
+
+#: keyboards/reply_keywords.py:32
+msgid "📞 Phone number"
+msgstr "📞 Phone number"
+
+#: keyboards/reply_keywords.py:44
+msgid "📞 Location"
+msgstr "📞 Location"
+
+#: keyboards/reply_keywords.py:56
+msgid "Order product"
+msgstr "Order product"
+
+#: keyboards/reply_keywords.py:57
+msgid "Contacts"
+msgstr "Contacts"
+
+#: keyboards/reply_keywords.py:61
+msgid "⚙️ Settings"
+msgstr "⚙️ Settings"
+
+#: keyboards/reply_keywords.py:112
+msgid "Tasdiqlayman"
+msgstr "I confirm"
+
+#: keyboards/reply_keywords.py:113
+msgid "Qo'lda kiritaman"
+msgstr "I'll enter manually"

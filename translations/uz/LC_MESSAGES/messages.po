@@ -1,0 +1,114 @@
+# Uzbek translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-04-12 18:28+0500\n"
+"PO-Revision-Date: 2025-04-12 18:28+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uz\n"
+"Language-Team: uz <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: database/service.py:52 keyboards/reply_keywords.py:23
+#: keyboards/reply_keywords.py:35 keyboards/reply_keywords.py:47
+#: keyboards/reply_keywords.py:78 keyboards/reply_keywords.py:103
+msgid "⬅️ Back"
+msgstr "⬅️ Orqaga"
+
+#: handlers/main_handler.py:39
+msgid "Botimizga xush kelibsiz !!!"
+msgstr "Botimizga xush kelibsiz !!!"
+
+#: handlers/main_handler.py:56
+msgid "Enter your full name"
+msgstr "To'liq ismingizni kiriting"
+
+#: handlers/main_handler.py:64
+msgid "Enter phone number"
+msgstr "Telefon raqamingizni kiriting"
+
+#: handlers/main_handler.py:76
+msgid "You successfully, registered"
+msgstr "Siz muvaffaqiyatli ro'yxatdan o'tdingiz"
+
+#: handlers/main_handler.py:84
+msgid "Bizning operatorlarimiz bilan bog'laning: +998 94-924-29-45"
+msgstr "Bizning operatorlarimiz bilan bog'laning: +998 94-924-29-45"
+
+#: handlers/main_handler.py:93
+msgid "Choose nessesery language"
+msgstr "Kerakli tilni tanlang"
+
+#: handlers/main_handler.py:109
+msgid "Language changed successfully"
+msgstr "Til muvaffaqiyatli o'zgartirildi"
+
+#: handlers/main_handler.py:119
+msgid "Choose one of the product"
+msgstr "Mahsulotlardan birini tanlang"
+
+#: handlers/main_handler.py:128
+msgid "How many do you need"
+msgstr "Nechta kerak?"
+
+#: handlers/main_handler.py:136
+msgid "In what time it need to delivered"
+msgstr "Qachon yetkazib berilishi kerak?"
+
+#: handlers/main_handler.py:144
+msgid "Input you location"
+msgstr "Manzilingizni kiriting"
+
+#: handlers/main_handler.py:152
+#, python-brace-format
+msgid "Bu mazilni tasdiqlaysizmi **{location_}**"
+msgstr "Bu manzilni tasdiqlaysizmi **{location_}**?"
+
+#: handlers/main_handler.py:168
+msgid "Product added successfully, just wait about 2 days"
+msgstr "Mahsulot muvaffaqiyatli qo'shildi, atigi 2 kun kuting"
+
+#: handlers/main_handler.py:172
+msgid "Enter by hand !!!"
+msgstr "Qo'lda kiriting!!!"
+
+#: handlers/main_handler.py:180
+msgid "Product added successfully, just wait"
+msgstr "Mahsulot muvaffaqiyatli qo'shildi, kuting"
+
+#: keyboards/reply_keywords.py:32
+msgid "📞 Phone number"
+msgstr "📞 Telefon raqami"
+
+#: keyboards/reply_keywords.py:44
+msgid "📞 Location"
+msgstr "📞 Manzil"
+
+#: keyboards/reply_keywords.py:56
+msgid "Order product"
+msgstr "Mahsulot buyurtma berish"
+
+#: keyboards/reply_keywords.py:57
+msgid "Contacts"
+msgstr "Aloqaga chiqish"
+
+#: keyboards/reply_keywords.py:61
+msgid "⚙️ Settings"
+msgstr "⚙️ Sozlamalar"
+
+#: keyboards/reply_keywords.py:112
+msgid "Tasdiqlayman"
+msgstr "Tasdiqlayman"
+
+#: keyboards/reply_keywords.py:113
+msgid "Qo'lda kiritaman"
+msgstr "Qo'lda kiritaman"

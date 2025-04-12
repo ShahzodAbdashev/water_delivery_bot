@@ -1,0 +1,115 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-04-12 18:28+0500\n"
+"PO-Revision-Date: 2025-04-12 18:28+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: database/service.py:52 keyboards/reply_keywords.py:23
+#: keyboards/reply_keywords.py:35 keyboards/reply_keywords.py:47
+#: keyboards/reply_keywords.py:78 keyboards/reply_keywords.py:103
+msgid "⬅️ Back"
+msgstr "⬅️ Назад"
+
+#: handlers/main_handler.py:39
+msgid "Botimizga xush kelibsiz !!!"
+msgstr "Добро пожаловать в нашего бота!"
+
+#: handlers/main_handler.py:56
+msgid "Enter your full name"
+msgstr "Введите ваше полное имя"
+
+#: handlers/main_handler.py:64
+msgid "Enter phone number"
+msgstr "Введите номер телефона"
+
+#: handlers/main_handler.py:76
+msgid "You successfully, registered"
+msgstr "Вы успешно зарегистрировались"
+
+#: handlers/main_handler.py:84
+msgid "Bizning operatorlarimiz bilan bog'laning: +998 94-924-29-45"
+msgstr "Свяжитесь с нашими операторами: +998 94-924-29-45"
+
+#: handlers/main_handler.py:93
+msgid "Choose nessesery language"
+msgstr "Выберите нужный язык"
+
+#: handlers/main_handler.py:109
+msgid "Language changed successfully"
+msgstr "Язык успешно изменён"
+
+#: handlers/main_handler.py:119
+msgid "Choose one of the product"
+msgstr "Выберите один из продуктов"
+
+#: handlers/main_handler.py:128
+msgid "How many do you need"
+msgstr "Сколько вам нужно?"
+
+#: handlers/main_handler.py:136
+msgid "In what time it need to delivered"
+msgstr "Когда нужно доставить?"
+
+#: handlers/main_handler.py:144
+msgid "Input you location"
+msgstr "Введите ваше местоположение"
+
+#: handlers/main_handler.py:152
+#, python-brace-format
+msgid "Bu mazilni tasdiqlaysizmi **{location_}**"
+msgstr "Вы подтверждаете этот адрес **{location_}**?"
+
+#: handlers/main_handler.py:168
+msgid "Product added successfully, just wait about 2 days"
+msgstr "Продукт успешно добавлен. Ожидайте примерно 2 дня"
+
+#: handlers/main_handler.py:172
+msgid "Enter by hand !!!"
+msgstr "Введите вручную!"
+
+#: handlers/main_handler.py:180
+msgid "Product added successfully, just wait"
+msgstr "Продукт успешно добавлен. Пожалуйста, подождите"
+
+#: keyboards/reply_keywords.py:32
+msgid "📞 Phone number"
+msgstr "📞 Номер телефона"
+
+#: keyboards/reply_keywords.py:44
+msgid "📞 Location"
+msgstr "📞 Местоположение"
+
+#: keyboards/reply_keywords.py:56
+msgid "Order product"
+msgstr "Заказать продукт"
+
+#: keyboards/reply_keywords.py:57
+msgid "Contacts"
+msgstr "Контакты"
+
+#: keyboards/reply_keywords.py:61
+msgid "⚙️ Settings"
+msgstr "⚙️ Настройки"
+
+#: keyboards/reply_keywords.py:112
+msgid "Tasdiqlayman"
+msgstr "Подтверждаю"
+
+#: keyboards/reply_keywords.py:113
+msgid "Qo'lda kiritaman"
+msgstr "Введу вручную"
