@@ -78,7 +78,7 @@ def time_interval(lang):
                 KeyboardButton(text=_('⬅️ Back',lang))
             ]
 
-        ]
+        ],resize_keyboard=True
     )
 
 def quantity_product(lang):
@@ -102,7 +102,7 @@ def quantity_product(lang):
             [
                 KeyboardButton(text=_('⬅️ Back',lang))
             ]
-        ]
+        ],resize_keyboard=True
     )
 
 def keyboard_location_input(lang):
@@ -113,3 +113,11 @@ def keyboard_location_input(lang):
             KeyboardButton(text=_("Qo'lda kiritaman",lang))
         ]
     ],resize_keyboard=True)
+
+admin_keyboard = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text = "Mahsulot qo'shish")
+        ]
+    ],resize_keyboard=True
+)

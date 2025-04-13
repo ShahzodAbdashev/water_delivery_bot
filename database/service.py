@@ -56,7 +56,8 @@ async def get_product_name(name:str):
     async with models.async_session() as session:
         stmt = await session.execute(select(models.Product).where(models.Product.name == name))
 
-        return stmt.scalar_one_or_none()
+        product = stmt.scalar_one_or_none()
+        return product
     
 async def create_order(product_id:int, quantity:int,
                        time:str, location:str,user_id:str):
@@ -64,7 +65,7 @@ async def create_order(product_id:int, quantity:int,
         order = models.Order(
             product_id=product_id,
             quantity=quantity,
-            time=time,
+            delivery_time=time,
             location=location,
             user_id=user_id
         )
@@ -72,4 +73,15 @@ async def create_order(product_id:int, quantity:int,
         session.add(order)
 
         await session.commit()
-        
+
+async def create_product(name:str, price:str, image:str):
+    async with models.async_session() as session:
+        product = models.Product(
+            name=name,
+            price=price,
+            image=image,
+            description='sassfsdfsdf'
+        )
+        session.add(product)
+
+        await session.commit()

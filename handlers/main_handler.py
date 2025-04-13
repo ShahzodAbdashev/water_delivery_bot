@@ -37,6 +37,7 @@ async def start_chat(message:Message, state:FSMContext):
 
     if user_lang is not None:
         await message.answer(_("Botimizga xush kelibsiz !!!",user_lang),reply_markup=reply_keywords.main_menu(user_lang))
+        logging.info('Welcome to our bot')
     else: 
         await state.set_state(RegisterUser.language)
         await message.answer("Til tanlang", reply_markup=reply_keywords.language_menu)
@@ -121,10 +122,11 @@ async def order_product_steps(message:Message, state:FSMContext):
 @main_router.message(OrderProduct.product, F.text)
 async def order_product_name(message:Message, state:FSMContext):
     product_name = await service.get_product_name(message.text)
-    await state.update_data(product=product_name)
+    await state.update_data(product=product_name.name)
     lang = await service.get_user_language(message.from_user.id)
 
     await state.set_state(OrderProduct.quantity)
+    await message.answer_photo(photo=product_name.image, caption=f"Price:{product_name.price}")
     await message.answer(_('How many do you need',lang), reply_markup=reply_keywords.quantity_product(lang))
 
 @main_router.message(OrderProduct.quantity, F.text)
@@ -144,7 +146,7 @@ async def order_product_time(message:Message, state:FSMContext):
     await message.answer(_("Input you location",lang), 
                          reply_markup=reply_keywords.back_and_location_button(lang))
 
-@main_router.message(OrderProduct.location, F.location)
+@main_router.message(OrderProduct.location)
 async def order_product_location(message:Message, state:FSMContext):
     lang = await service.get_user_language(message.from_user.id)
     if message.location:
@@ -152,33 +154,41 @@ async def order_product_location(message:Message, state:FSMContext):
         await message.answer(_('Bu mazilni tasdiqlaysizmi **{location_}**'.format(location_=location_),lang),
                              parse_mode="Markdown",
                              reply_markup=reply_keywords.keyboard_location_input(lang))
+        await state.update_data(location=location_)  
         
     elif message.text in ['Tasdiqlayman','Confirm','Подтверждаю']:
         data = await state.get_data()
-        await state.update_data(location=data.get("location"))  
-        user_id = await service.get_user(message.from_user.id)  
-        product_id = await service.get_product_name(data['product'])
+        user = await service.get_user(message.from_user.id)  
+        product = await service.get_product_name(data['product'])
         await service.create_order(
-            product_id=product_id.id,
-            user_id=user_id.id,
+            product_id=product.id,
+            user_id=user.id,
             time=data['time'],
             location=data['location'],
             quantity=int(data['quantity'])
         )
-
-        await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_keywords.main_menu(lang))
+        await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_markup=reply_keywords.main_menu(lang))
         await state.clear()
 
-    elif message.text in ["Qo'lda kiritaman",'Ввод вручную','Enter manually']:
-        await message.answer(_("Enter by hand !!!",lang))
+    elif message.text in ["Qo'lda kiritaman",'Введу вручную','Enter manually']:
+        await message.answer(_("Enter by hand !!!",lang), reply_markup=ReplyKeyboardRemove())
         await state.set_state(OrderProduct.location_type)
 
 @main_router.message(OrderProduct.location_type, F.text)
 async def order_product_location_type(message:Message, state:FSMContext):
     lang = await service.get_user_language(message.from_user.id)
     await state.update_data(location_type=message.text)
-
-    await message.answer(_("Product added successfully, just wait", lang), reply_keywords.main_menu(lang))
+    data = await state.get_data()
+    user = await service.get_user(message.from_user.id)  
+    product = await service.get_product_name(data['product'])
+    await service.create_order(
+            product_id=product.id,
+            user_id=user.id,
+            time=data['time'],
+            location=data['location_type'],
+            quantity=int(data['quantity'])
+        )
+    await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_markups=reply_keywords.main_menu(lang))
     await state.clear()
 #order product
     

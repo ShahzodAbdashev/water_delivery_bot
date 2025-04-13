@@ -7,11 +7,13 @@ from aiogram import Bot, Dispatcher
 from utils.config import settings
 from database.models import engine, Base
 from handlers.main_handler import main_router
+from handlers.admin_handler import admin_router
 
 bot = Bot(token=settings.TOKEN)
 
 dp = Dispatcher()
 
+# dp.include_router(admin_router)
 dp.include_router(main_router)
 
 
