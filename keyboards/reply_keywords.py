@@ -97,7 +97,7 @@ def quantity_product(lang):
             [
                 KeyboardButton(text='7'),
                 KeyboardButton(text='8'),
-                KeyboardButton(text='8')
+                KeyboardButton(text='9')
             ],
             [
                 KeyboardButton(text=_('⬅️ Back',lang))
@@ -117,7 +117,8 @@ def keyboard_location_input(lang):
 admin_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text = "Mahsulot qo'shish")
+            KeyboardButton(text = "Mahsulot qo'shish"),
+            KeyboardButton(text = "Buyurtmalar")
         ]
     ],resize_keyboard=True
 )

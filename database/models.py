@@ -45,6 +45,7 @@ class Order(Base):
     quantity = Column(Integer)
     delivery_time = Column(String(100))
     location = Column(String(100))
+    is_delivered = Column(Boolean, default=False)
 
     product = relationship('Product', back_populates='orders')  
     user = relationship('User', back_populates='orders')

@@ -84,7 +84,7 @@ msgstr "Введите вручную!"
 
 #: handlers/main_handler.py:180
 msgid "Product added successfully, just wait"
-msgstr "Продукт успешно добавлен. Пожалуйста, подождите"
+msgstr "Продукт успешно добавлен. Ожидайте примерно 2 дня"
 
 #: keyboards/reply_keywords.py:32
 msgid "📞 Phone number"

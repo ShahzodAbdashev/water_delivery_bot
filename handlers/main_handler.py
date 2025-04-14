@@ -13,7 +13,6 @@ from keyboards import reply_keywords
 
 main_router = Router()
 
-
 class RegisterUser(StatesGroup):
     language = State()
     full_name = State()
@@ -29,11 +28,39 @@ class OrderProduct(StatesGroup):
     location = State()
     location_type = State()
 
+    translation = {
+            "OrderProduct:product":{
+                "en": "Chooose one of the product",
+                "uz": "Mahsulotlardan birini tanglang",
+                "ru": "Выберите один из продуктов"
+            },
+            "OrderProduct:quantity":{
+                "en": "How many do you need",
+                "uz": "Nechta kerak sizga !!!",
+                "ru": "Сколько вам нужно?"
+            },
+            "OrderProduct:time":{
+                "en": "In what time it need to delivered",
+                "uz": "Soat nechida kerak",
+                "ru": "Когда нужно доставить"
+            },
+            "OrderProduct:location":{
+                "en": "Input you location",
+                "uz": "Lakatsiyangizni kiriting !!!",
+                "ru": "Введите ваше местоположение"
+            },
+            "OrderProduct:location_type":{
+                "en": "Input you location by hand",
+                "uz": "Lakatsiyangizni kiriting qolda !!!",
+                "ru": "Введите ваше местоположение chto"
+            }
+        }
+
 
 # user registration
 @main_router.message(StateFilter(None), CommandStart())
 async def start_chat(message:Message, state:FSMContext):
-    user_lang = await service.get_user_language(message.from_user.id)
+    user_lang = await service.get_user_language((message.from_user.id))
 
     if user_lang is not None:
         await message.answer(_("Botimizga xush kelibsiz !!!",user_lang),reply_markup=reply_keywords.main_menu(user_lang))
@@ -119,7 +146,7 @@ async def order_product_steps(message:Message, state:FSMContext):
     await state.set_state(OrderProduct.product)
     await message.answer(_("Choose one of the product",lang), reply_markup=await service.get_product_with_name(lang))
 
-@main_router.message(OrderProduct.product, F.text)
+@main_router.message(OrderProduct.product, ~F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад']))
 async def order_product_name(message:Message, state:FSMContext):
     product_name = await service.get_product_name(message.text)
     await state.update_data(product=product_name.name)
@@ -129,7 +156,7 @@ async def order_product_name(message:Message, state:FSMContext):
     await message.answer_photo(photo=product_name.image, caption=f"Price:{product_name.price}")
     await message.answer(_('How many do you need',lang), reply_markup=reply_keywords.quantity_product(lang))
 
-@main_router.message(OrderProduct.quantity, F.text)
+@main_router.message(OrderProduct.quantity, ~F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад']))
 async def order_product_quantity(message:Message, state:FSMContext):
     await state.update_data(quantity=message.text)
     lang = await service.get_user_language(message.from_user.id)
@@ -137,7 +164,7 @@ async def order_product_quantity(message:Message, state:FSMContext):
     await state.set_state(OrderProduct.time)
     await message.answer(_("In what time it need to delivered",lang), reply_markup=reply_keywords.time_interval(lang))
 
-@main_router.message(OrderProduct.time, F.text)
+@main_router.message(OrderProduct.time, ~F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад']))
 async def order_product_time(message:Message, state:FSMContext):
     await state.update_data(time=message.text)
     lang = await service.get_user_language(message.from_user.id)
@@ -146,7 +173,7 @@ async def order_product_time(message:Message, state:FSMContext):
     await message.answer(_("Input you location",lang), 
                          reply_markup=reply_keywords.back_and_location_button(lang))
 
-@main_router.message(OrderProduct.location)
+@main_router.message(OrderProduct.location, ~F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад']))
 async def order_product_location(message:Message, state:FSMContext):
     lang = await service.get_user_language(message.from_user.id)
     if message.location:
@@ -170,11 +197,11 @@ async def order_product_location(message:Message, state:FSMContext):
         await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_markup=reply_keywords.main_menu(lang))
         await state.clear()
 
-    elif message.text in ["Qo'lda kiritaman",'Введу вручную','Enter manually']:
+    elif message.text in ["Qo'lda kiritaman",'Введу вручную',"I'll enter manually"]:
         await message.answer(_("Enter by hand !!!",lang), reply_markup=ReplyKeyboardRemove())
         await state.set_state(OrderProduct.location_type)
 
-@main_router.message(OrderProduct.location_type, F.text)
+@main_router.message(OrderProduct.location_type, ~F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад']))
 async def order_product_location_type(message:Message, state:FSMContext):
     lang = await service.get_user_language(message.from_user.id)
     await state.update_data(location_type=message.text)
@@ -190,8 +217,37 @@ async def order_product_location_type(message:Message, state:FSMContext):
         )
     await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_markups=reply_keywords.main_menu(lang))
     await state.clear()
-#order product
+#order product end
     
+#back button
+@main_router.message(StateFilter('*', F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад'])))
+async def back_previous(message:Message, state:FSMContext):
+    current_state = await state.get_state()
+    lang = await service.get_user_language(message.from_user.id)
+    if current_state == OrderProduct.product:
+        await message.answer(_("Botimizga xush kelibsiz !!!",lang),reply_markup=reply_keywords.main_menu(lang))
+        await state.clear()
 
-
-
+        return 
+    previous = None
+    for step in OrderProduct.__all_states__:
+        if step.state == current_state:
+            await state.set_state(previous)
+            if previous == OrderProduct.product:
+                keyboard = await service.get_product_with_name(lang)
+            elif previous == OrderProduct.quantity:
+                keyboard = reply_keywords.quantity_product(lang)
+            elif previous == OrderProduct.time:
+                keyboard = reply_keywords.time_interval(lang)
+            elif previous == OrderProduct.location:
+                keyboard = reply_keywords.back_and_location_button(lang)
+            elif previous == OrderProduct.location_type:
+                keyboard = reply_keywords.keyboard_location_input(lang)
+            else: 
+                keyboard = ReplyKeyboardRemove()
+            await message.answer(
+                f"{OrderProduct.translation[previous.state][lang]}", reply_markup=keyboard
+            )
+            return 
+        previous = step
+#back button end

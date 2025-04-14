@@ -8,8 +8,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the project files
-COPY src/ src/
+COPY . .
 
 
 # Run the FastAPI application
-CMD ["python3", "bot.py"]
+CMD ["alembic revision --autogenerate -m 'add:starting new models'","alembic upgrade heads","python3 bot.py"]

@@ -1,4 +1,7 @@
+import logging
+
 from sqlalchemy import select, update
+from sqlalchemy.orm import selectinload, joinedload
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 from database import models
@@ -85,3 +88,27 @@ async def create_product(name:str, price:str, image:str):
         session.add(product)
 
         await session.commit()
+
+async def get_orders_not_done():
+    async with models.async_session() as session:
+        orders = await session.execute(
+                select(models.Order)
+                .join(models.Order.user)        # join with User
+                .join(models.Order.product)     # join with Product
+                .where(models.Order.is_delivered == False)
+                .options(
+                    joinedload(models.Order.user),
+                    joinedload(models.Order.product)
+                )
+            )
+        return orders.scalars().all()
+    
+async def update_order_done(order_id):
+    async with models.async_session() as session:
+        try:
+            await session.execute(update(models.Order)
+                                .where(models.Order.id == order_id)
+                                .values(is_delivered=True))
+            await session.commit()
+        except Exception as e:
+            logging.warning('Order not updated')
