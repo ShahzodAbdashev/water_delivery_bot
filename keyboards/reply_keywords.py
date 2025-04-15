@@ -30,9 +30,6 @@ def back_and_phone_button(lang):
         keyboard=[
             [
                 KeyboardButton(text=(_('📞 Phone number',lang)),request_contact=True)
-            ],
-            [
-                KeyboardButton(text=_('⬅️ Back',lang))
             ]
         ],resize_keyboard=True
     )
