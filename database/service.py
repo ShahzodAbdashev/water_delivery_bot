@@ -1,7 +1,7 @@
 import logging
 
 from sqlalchemy import select, update
-from sqlalchemy.orm import selectinload, joinedload
+from sqlalchemy.orm import joinedload
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 from database import models
@@ -123,8 +123,8 @@ async def get_orders_not_done():
         try:
             orders = await session.execute(
                     select(models.Order)
-                    .join(models.Order.user)        # join with User
-                    .join(models.Order.product)     # join with Product
+                    .join(models.Order.user)        
+                    .join(models.Order.product)     
                     .where(models.Order.is_delivered == False)
                     .options(
                         joinedload(models.Order.user),

@@ -26,7 +26,7 @@ msgstr "⬅️ Orqaga"
 
 #: handlers/main_handler.py:39
 msgid "Botimizga xush kelibsiz !!!"
-msgstr "Botimizga xush kelibsiz !!!"
+msgstr "Buyurtmangiz qabul qilindi tez orada operatorlarimiz siz bilan bog’lanishadi😊"
 
 #: handlers/main_handler.py:56
 msgid "Enter your full name"

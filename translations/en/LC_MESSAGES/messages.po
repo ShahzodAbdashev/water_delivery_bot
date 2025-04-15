@@ -26,7 +26,7 @@ msgstr "⬅️ Back"
 
 #: handlers/main_handler.py:39
 msgid "Botimizga xush kelibsiz !!!"
-msgstr "Welcome to our bot!"
+msgstr "Your order has been received. Our operators will contact you shortly 😊"
 
 #: handlers/main_handler.py:56
 msgid "Enter your full name"

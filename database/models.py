@@ -2,7 +2,7 @@ import asyncio
 
 from sqlalchemy import String, Integer, DateTime, Boolean, Column, ForeignKey, func, BigInteger
 from sqlalchemy.orm import DeclarativeBase, relationship
-from sqlalchemy.ext.asyncio import AsyncAttrs, AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
 from utils.config import settings
 

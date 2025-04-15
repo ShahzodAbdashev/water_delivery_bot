@@ -56,7 +56,6 @@ class OrderProduct(StatesGroup):
             }
         }
 
-
 # user registration
 @main_router.message(StateFilter(None), CommandStart())
 async def start_chat(message:Message, state:FSMContext):
