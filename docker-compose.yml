@@ -9,7 +9,7 @@ services:
       - db
     volumes:
       - ./src:/app/src
-    command: python3 bot.py
+    command: bash start.sh
 
   db:
     image: postgres:17
