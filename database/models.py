@@ -43,7 +43,6 @@ class Order(Base):
     user_id = Column(ForeignKey('users.id', ondelete='CASCADE'))
     product_id = Column(ForeignKey('products.id', ondelete='CASCADE')) 
     quantity = Column(Integer)
-    delivery_time = Column(String(100))
     location = Column(String(100))
     is_delivered = Column(Boolean, default=False)
 

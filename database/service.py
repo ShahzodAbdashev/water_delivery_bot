@@ -37,8 +37,8 @@ async def create_new_user(data:dict, telegram_id:int):
                 telegram_id=str(telegram_id)
             )
             session.add(stmt)
-            await session.commit()
             logging.info("User created successfully")
+            await session.commit()
         except Exception as e:
             logging.warning(f"Cannot create new user, Error says {e}")
 
@@ -83,13 +83,12 @@ async def get_product_name(name:str):
             logging.warning(f"Cannot get product name button, Error says {e}")
     
 async def create_order(product_id:int, quantity:int,
-                       time:str, location:str,user_id:str):
+                    location:str,user_id:str):
     try:
         async with models.async_session() as session:
             order = models.Order(
                 product_id=product_id,
                 quantity=quantity,
-                delivery_time=time,
                 location=location,
                 user_id=user_id
             )

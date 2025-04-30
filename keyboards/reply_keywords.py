@@ -51,32 +51,16 @@ def main_menu(lang):
         keyboard=[
             [
                 KeyboardButton(text=_('Order product',lang)),
-                KeyboardButton(text=_('Contacts',lang))
+                KeyboardButton(text=_('Chimgan kids',lang)),
             ],
 
             [
+                KeyboardButton(text=_('Contacts',lang)),
                 KeyboardButton(text=_('⚙️ Settings',lang))
             ]
         ],resize_keyboard=True
     )
 
-def time_interval(lang):
-    return ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='8-10'),
-                KeyboardButton(text='12-14')
-            ],
-            [
-                KeyboardButton(text='15-18'),
-                KeyboardButton(text='17-20')
-            ],
-            [
-                KeyboardButton(text=_('⬅️ Back',lang))
-            ]
-
-        ],resize_keyboard=True
-    )
 
 def quantity_product(lang):
     return ReplyKeyboardMarkup(

@@ -24,7 +24,6 @@ class ChangeLanguage(StatesGroup):
 class OrderProduct(StatesGroup):
     product = State()
     quantity = State()
-    time = State()
     location = State()
     location_type = State()
 
@@ -38,11 +37,6 @@ class OrderProduct(StatesGroup):
                 "en": "How many do you need",
                 "uz": "Nechta kerak sizga !!!",
                 "ru": "Сколько вам нужно?"
-            },
-            "OrderProduct:time":{
-                "en": "In what time it need to delivered",
-                "uz": "Soat nechida kerak",
-                "ru": "Когда нужно доставить"
             },
             "OrderProduct:location":{
                 "en": "Input you location",
@@ -137,8 +131,22 @@ async def change_valid_language(message:Message, state:FSMContext):
     await state.clear()
 #change language end
 
+#order product kids
+@main_router.message(StateFilter(None), F.text.in_(['Chimgan kids']))
+async def order_product_steps(message:Message, state:FSMContext):
+    lang = await service.get_user_language(message.from_user.id)
+
+    product_name = await service.get_product_name('18.9L')
+    await state.update_data(product=product_name.name)
+    lang = await service.get_user_language(message.from_user.id)
+
+    await state.set_state(OrderProduct.quantity)
+    await message.answer_photo(photo=product_name.image, caption=f"Price:{product_name.price}")
+    await message.answer(_('How many do you need',lang), reply_markup=reply_keywords.quantity_product(lang))
+#order product kids end
+
 #order product
-@main_router.message(StateFilter(None), F.text.in_(['Order product','Заказать продукт','Mahsulot buyurtma berish']))
+@main_router.message(StateFilter(None), F.text.in_(['Chimgan water','Чимганская вода','Chimgan water']))
 async def order_product_steps(message:Message, state:FSMContext):
     lang = await service.get_user_language(message.from_user.id)
 
@@ -158,14 +166,6 @@ async def order_product_name(message:Message, state:FSMContext):
 @main_router.message(OrderProduct.quantity, ~F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад']))
 async def order_product_quantity(message:Message, state:FSMContext):
     await state.update_data(quantity=message.text)
-    lang = await service.get_user_language(message.from_user.id)
-
-    await state.set_state(OrderProduct.time)
-    await message.answer(_("In what time it need to delivered",lang), reply_markup=reply_keywords.time_interval(lang))
-
-@main_router.message(OrderProduct.time, ~F.text.in_(['⬅️ Back','⬅️ Orqaga','⬅️ Назад']))
-async def order_product_time(message:Message, state:FSMContext):
-    await state.update_data(time=message.text)
     lang = await service.get_user_language(message.from_user.id)
 
     await state.set_state(OrderProduct.location)
@@ -189,7 +189,6 @@ async def order_product_location(message:Message, state:FSMContext):
         await service.create_order(
             product_id=product.id,
             user_id=user.id,
-            time=data['time'],
             location=data['location'],
             quantity=int(data['quantity'])
         )
@@ -210,7 +209,6 @@ async def order_product_location_type(message:Message, state:FSMContext):
     await service.create_order(
             product_id=product.id,
             user_id=user.id,
-            time=data['time'],
             location=data['location_type'],
             quantity=int(data['quantity'])
         )
@@ -236,8 +234,6 @@ async def back_previous(message:Message, state:FSMContext):
                 keyboard = await service.get_product_with_name(lang)
             elif previous == OrderProduct.quantity:
                 keyboard = reply_keywords.quantity_product(lang)
-            elif previous == OrderProduct.time:
-                keyboard = reply_keywords.time_interval(lang)
             elif previous == OrderProduct.location:
                 keyboard = reply_keywords.back_and_location_button(lang)
             elif previous == OrderProduct.location_type:

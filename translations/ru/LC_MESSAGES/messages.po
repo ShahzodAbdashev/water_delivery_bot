@@ -96,7 +96,7 @@ msgstr "📞 Местоположение"
 
 #: keyboards/reply_keywords.py:56
 msgid "Order product"
-msgstr "Заказать продукт"
+msgstr "Чимганская вода"
 
 #: keyboards/reply_keywords.py:57
 msgid "Contacts"
@@ -113,3 +113,6 @@ msgstr "Подтверждаю"
 #: keyboards/reply_keywords.py:113
 msgid "Qo'lda kiritaman"
 msgstr "Введу вручную"
+
+msgid "Chimgan kids"
+msgstr "Chimgan kids"

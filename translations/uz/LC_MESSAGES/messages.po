@@ -95,7 +95,7 @@ msgstr "📞 Manzil"
 
 #: keyboards/reply_keywords.py:56
 msgid "Order product"
-msgstr "Mahsulot buyurtma berish"
+msgstr "Chimgan water"
 
 #: keyboards/reply_keywords.py:57
 msgid "Contacts"
@@ -112,3 +112,6 @@ msgstr "Tasdiqlayman"
 #: keyboards/reply_keywords.py:113
 msgid "Qo'lda kiritaman"
 msgstr "Qo'lda kiritaman"
+
+msgid "Chimgan kids"
+msgstr "Chimgan kids"

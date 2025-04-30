@@ -95,7 +95,7 @@ msgstr "📞 Location"
 
 #: keyboards/reply_keywords.py:56
 msgid "Order product"
-msgstr "Order product"
+msgstr "Chimgan water"
 
 #: keyboards/reply_keywords.py:57
 msgid "Contacts"
@@ -112,3 +112,6 @@ msgstr "I confirm"
 #: keyboards/reply_keywords.py:113
 msgid "Qo'lda kiritaman"
 msgstr "I'll enter manually"
+
+msgid "Chimgan kids"
+msgstr "Chimgan kids"
