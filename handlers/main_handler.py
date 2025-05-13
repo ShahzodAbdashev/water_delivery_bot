@@ -196,7 +196,7 @@ async def order_product_location(message:Message, state:FSMContext):
         )
         
         # Send notification to admin chat
-        admin_chat_id = 2575123602  # Replace with your actual admin chat ID
+        admin_chat_id = -2575123602  # Replace with your actual admin chat ID
         notification_text = (
             f"🆕 New Order!\n\n"
             f"👤 Customer: {user.full_name}\n"
@@ -204,7 +204,6 @@ async def order_product_location(message:Message, state:FSMContext):
             f"📦 Product: {product.name}\n"
             f"🔢 Quantity: {data['quantity']}\n"
             f"📍 Location: {data['location']}\n"
-            f"🆔 Order ID: {order.id}"
         )
         
         try:
@@ -240,7 +239,7 @@ async def order_product_location_type(message:Message, state:FSMContext):
         )
     
     # Send notification to admin chat
-    admin_chat_id = 2575123602  # Replace with your actual admin chat ID
+    admin_chat_id = -2575123602  # Replace with your actual admin chat ID
     notification_text = (
         f"🆕 New Order!\n\n"
         f"👤 Customer: {user.full_name}\n"
@@ -248,7 +247,6 @@ async def order_product_location_type(message:Message, state:FSMContext):
         f"📦 Product: {product.name}\n"
         f"🔢 Quantity: {data['quantity']}\n"
         f"📍 Location: {data['location_type']}\n"
-        f"🆔 Order ID: {order.id}"
     )
     
     try:
