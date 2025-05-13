@@ -186,12 +186,36 @@ async def order_product_location(message:Message, state:FSMContext):
         data = await state.get_data()
         user = await service.get_user(message.from_user.id)  
         product = await service.get_product_name(data['product'])
-        await service.create_order(
+        
+        # Create the order
+        order = await service.create_order(
             product_id=product.id,
             user_id=user.id,
             location=data['location'],
             quantity=int(data['quantity'])
         )
+        
+        # Send notification to admin chat
+        admin_chat_id = 2575123602  # Replace with your actual admin chat ID
+        notification_text = (
+            f"🆕 New Order!\n\n"
+            f"👤 Customer: {user.full_name}\n"
+            f"📱 Phone: {user.phone_number}\n"
+            f"📦 Product: {product.name}\n"
+            f"🔢 Quantity: {data['quantity']}\n"
+            f"📍 Location: {data['location']}\n"
+            f"🆔 Order ID: {order.id}"
+        )
+        
+        try:
+            await message.bot.send_message(
+                chat_id=admin_chat_id,
+                text=notification_text,
+                parse_mode="HTML"
+            )
+        except Exception as e:
+            logging.error(f"Failed to send admin notification: {e}")
+            
         await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_markup=reply_keywords.main_menu(lang))
         await state.clear()
 
@@ -206,13 +230,37 @@ async def order_product_location_type(message:Message, state:FSMContext):
     data = await state.get_data()
     user = await service.get_user(message.from_user.id)  
     product = await service.get_product_name(data['product'])
-    await service.create_order(
+    
+    # Create the order
+    order = await service.create_order(
             product_id=product.id,
             user_id=user.id,
             location=data['location_type'],
             quantity=int(data['quantity'])
         )
-    await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_markups=reply_keywords.main_menu(lang))
+    
+    # Send notification to admin chat
+    admin_chat_id = 2575123602  # Replace with your actual admin chat ID
+    notification_text = (
+        f"🆕 New Order!\n\n"
+        f"👤 Customer: {user.full_name}\n"
+        f"📱 Phone: {user.phone_number}\n"
+        f"📦 Product: {product.name}\n"
+        f"🔢 Quantity: {data['quantity']}\n"
+        f"📍 Location: {data['location_type']}\n"
+        f"🆔 Order ID: {order.id}"
+    )
+    
+    try:
+        await message.bot.send_message(
+            chat_id=admin_chat_id,
+            text=notification_text,
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        logging.error(f"Failed to send admin notification: {e}")
+    
+    await message.answer(_("Product added successfully, just wait about 2 days", lang), reply_markup=reply_keywords.main_menu(lang))
     await state.clear()
 #order product end
     

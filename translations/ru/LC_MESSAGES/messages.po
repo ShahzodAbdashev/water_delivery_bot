@@ -43,7 +43,7 @@ msgstr "Вы успешно зарегистрировались"
 
 #: handlers/main_handler.py:84
 msgid "Bizning operatorlarimiz bilan bog'laning: +998 94-924-29-45"
-msgstr "Свяжитесь с нашими операторами: +998 94-924-29-45"
+msgstr "Свяжитесь с нашими операторами: +998 97 034 01 38"
 
 #: handlers/main_handler.py:93
 msgid "Choose nessesery language"
